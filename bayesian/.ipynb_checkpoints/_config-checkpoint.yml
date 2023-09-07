@@ -3,6 +3,7 @@
 
 title: Bayesian Statistics
 author: Bora Ferlengez
+copyright: "2023"  # Copyright year to be placed in the footer
 logo: logo.svg
 
 # Force re-execution of notebooks on each build.
