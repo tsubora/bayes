@@ -330,7 +330,7 @@ $<span class="math notranslate nohighlight">\(P(E|F) = \frac{P(F|E)P(E)}{P(F)}\)
 <h2>Swapping conditionals<a class="headerlink" href="#swapping-conditionals" title="Permalink to this heading">#</a></h2>
 <p>One way to thing of the Bayes’ theorem is how to find the probability after swapping the event and the condition using the original conditional probability and the probabilities of the event and the condition.<br />
 To visualize what’s happening, Bayes’ theorem allows us to compute the conditional probability <span class="math notranslate nohighlight">\(P(E|F)\)</span> on the corresponding branch (that connects <span class="math notranslate nohighlight">\(P(F)\)</span> and <span class="math notranslate nohighlight">\(P(EF)\)</span>) of a probability tree, by using the values from a branch from another tree  where the initial node is <span class="math notranslate nohighlight">\(P(E)\)</span>:</p>
-<a class="reference internal image-reference" href="../assets/bayes_trees.png"><img alt="bayes_tree" class="align-center" src="../assets/bayes_trees.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/bayes_trees.png"><img alt="bayes_tree" class="align-center" src="_images/bayes_trees.png" style="width: 500px;" /></a>
 <section id="example-medical-test">
 <h3>Example: Medical test<a class="headerlink" href="#example-medical-test" title="Permalink to this heading">#</a></h3>
 <p>Assume that there is a disease and 2% of the population has that sickness (I will denote that event by 🤧, and the event that contains healthy people by 🥳).<br />
@@ -363,7 +363,7 @@ but <span class="math notranslate nohighlight">\(P(-|🤧)+P(-|🥳)\neq 1\)</sp
 </div>
 </div>
 </details><p>So, we can organize all given probabilities by drawing the following probability tree:</p>
-<a class="reference internal image-reference" href="../assets/med_test.png"><img alt="med_test" class="align-center" src="../assets/med_test.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/med_test.png"><img alt="med_test" class="align-center" src="_images/med_test.png" style="width: 600px;" /></a>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 The probability we’re after, namely <span class="math notranslate nohighlight">\(P(🤧|+)\)</span>, lives on another probability tree.<div class="sd-summary-down docutils">
@@ -371,7 +371,7 @@ The probability we’re after, namely <span class="math notranslate nohighlight"
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<a class="reference internal image-reference" href="../assets/med_test_2.png"><img alt="med_test" class="align-center" src="../assets/med_test_2.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/med_test_2.png"><img alt="med_test" class="align-center" src="_images/med_test_2.png" style="width: 600px;" /></a>
 </div>
 </details><p>Hence by Bayes’ theorem:
 $<span class="math notranslate nohighlight">\( P(🤧|+) = \frac{P(+|🤧)P(🤧)}{P(+)}=\frac{P(+|🤧)P(🤧)}{P(+\textrm{ and }🤧)+P(+\textrm{ and }🥳)}=\frac{0.9\cdot0.02}{0.9\cdot0.02+0.01\cdot0.98}=\frac{0.002}{0.0278}\approx 64.8\%\)</span>$</p>
