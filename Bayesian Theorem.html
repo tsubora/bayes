@@ -66,7 +66,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'Bayesian Theorem';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Stat319/Stat739: Introduction to Bayesian Inference" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,8 +156,8 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Bayesian Theorem</a></li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="random_variables.html">Random Variables</a></li>
 </ul>
 
     </div>
@@ -323,8 +322,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-theorem">
 <h1>Bayesian Theorem<a class="headerlink" href="#bayesian-theorem" title="Permalink to this heading">#</a></h1>
-<p>If <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(F\)</span> are two events, where <span class="math notranslate nohighlight">\(P(F)\neq 0\)</span>, the Bayes’ theorem reads as:<br />
-$<span class="math notranslate nohighlight">\(P(E|F) = \frac{P(F|E)P(E)}{P(F)}\)</span>$</p>
+<p>If <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(F\)</span> are two events, where <span class="math notranslate nohighlight">\(P(F)\neq 0\)</span>, the Bayes’ theorem reads as:</p>
+<div class="math notranslate nohighlight">
+\[P(E|F) = \frac{P(F|E)P(E)}{P(F)}\]</div>
 <p>Let’s try to discuss how to use/interpret that equation.</p>
 <section id="swapping-conditionals">
 <h2>Swapping conditionals<a class="headerlink" href="#swapping-conditionals" title="Permalink to this heading">#</a></h2>
@@ -401,8 +401,9 @@ probability they are dyzygotic is <span class="math notranslate nohighlight">\(p
 <p>Our question is: What is the proportion of dizygotic twins in the population?</p>
 <div class="math notranslate nohighlight">
 \[P(D|\{GG,BB\})=p=\frac{P(\{GG,BB\}|D)P(D)}{P(\{GG,BB\})}=\frac{\frac{1}{2}\cdot P(D)}{\frac{1}{2}\cdot P(D) + \frac{1}{2}\cdot (1-P(D))}\]</div>
-<p>And solving for <span class="math notranslate nohighlight">\(P(D)\)</span> yields:<br />
-$<span class="math notranslate nohighlight">\(P(D)=\frac{2p}{1+p}\)</span>$</p>
+<p>And solving for <span class="math notranslate nohighlight">\(P(D)\)</span> yields:</p>
+<div class="math notranslate nohighlight">
+\[P(D)=\frac{2p}{1+p}\]</div>
 </section>
 </section>
 </section>
@@ -438,15 +439,6 @@ $<span class="math notranslate nohighlight">\(P(D)=\frac{2p}{1+p}\)</span>$</p>
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="index.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Stat319/Stat739: Introduction to Bayesian Inference</p>
-      </div>
-    </a>
 </div></div>
   
 </div>
