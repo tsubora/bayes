@@ -310,6 +310,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popular-discrete-random-variables">(Popular) Discrete Random Variables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value-of-a-discrete-random-variable">Expected Value of a (Discrete) Random Variable</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Back to baby example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-expectance">Conditional expectance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-law-of-total-expectation">Example (law of total expectation)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -460,6 +464,60 @@ Each possible value of the random variable gets to have its probability as its w
 <p>Remark
 I find the geometric interpretation of the expected value very illuminating:</p>
 </div>
+<hr class="docutils" />
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Python<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">I will try to draw make the visualizations using <code class="docutils literal notranslate"><span class="pre">Python</span></code> (maybe later I can add the <code class="docutils literal notranslate"><span class="pre">R</span></code> versions, or even better, you can send the <code class="docutils literal notranslate"><span class="pre">R</span></code> versions in the Telegram group chat and we’d have better notes.)<br />
+You can ignore the Python code for the moment or try to figure out how it works. More important are the graphs.</p>
+</div>
+</details><hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the necessary packages to compute and visualize in python</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># parameters for the binomial distribution</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.7</span>
+
+<span class="c1"># generate binomial distribution</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># plot histogram using seaborn</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> 
+             <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> 
+             <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span> 
+             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> 
+             <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="c1"># calculate expected value E[X] = np</span>
+<span class="n">expected_value</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">p</span>
+
+<span class="c1"># add a triangle and label it by E[X]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">expected_value</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">expected_value</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.04</span><span class="p">,</span> <span class="s1">&#39;$E[X]$&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="c1"># cleaning the graph, we don&#39;t need the numbers</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>  
+<span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3a23a3c79bc334e0d8f57b802f57c2da586593b3aba8941afe7c974c840831db.png" src="_images/3a23a3c79bc334e0d8f57b802f57c2da586593b3aba8941afe7c974c840831db.png" />
+</div>
+</div>
 <p>The expected value is a horizontal value on the histogram of a random variable such that the histogram stays on balance and won’t tilt (clockwise or counterclockwise) if you put a pivot right at <span class="math notranslate nohighlight">\(E[X]\)</span>.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
@@ -472,22 +530,142 @@ I find the geometric interpretation of the expected value very illuminating:</p>
 Expected value is the first moment of a distribution. For more about moments of a distribution (optional for us): <a class="reference external" href="https://en.wikipedia.org/wiki/Moment_(mathematics)">Moment</a>.
 Also a quick remark, the zeroth moment is always 1 for a probability distribution, the second moment after centralizing is the variance etc.</p>
 </div>
-</details><a class="reference internal image-reference" href="_images/expected_value.png"><img alt="expected_value" class="align-center" src="_images/expected_value.png" style="width: 400px;" /></a>
-<p>You can think of removing the locations of the horizontal values on a distribution via some other function <span class="math notranslate nohighlight">\(f\)</span>.<br />
+</details><p>You can think of removing the locations of the horizontal values on a distribution via some other function <span class="math notranslate nohighlight">\(f\)</span>.<br />
 For example <span class="math notranslate nohighlight">\(f(k)=2k+1\)</span> would move the original values of the random variable the following way: stretches away from horizontal middle by 2 and then shifts to right by 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the necessary packages to compute and visualize in python</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># parameters for the binomial distribution</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.7</span>
+
+<span class="c1"># generate binomial distribution</span>
+<span class="n">data</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="c1"># plot histogram using seaborn</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> 
+             <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> 
+             <span class="n">kde</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span> 
+             <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> 
+             <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="c1"># calculate expected value E[X] = np</span>
+<span class="n">expected_value</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span> <span class="o">*</span> <span class="n">p</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="c1"># add a triangle and label it by E[X]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">expected_value</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">expected_value</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.04</span><span class="p">,</span> <span class="s1">&#39;$E[f(X)] = E[2X+1]$&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="c1"># cleaning the graph, we don&#39;t need the numbers</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>  
+<span class="n">plt</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/accb25ebb0d802814d14961f3a9930a4d829cfc23e0750163f7ad083eefa3aef.png" src="_images/accb25ebb0d802814d14961f3a9930a4d829cfc23e0750163f7ad083eefa3aef.png" />
+</div>
+</div>
+<p>Note that all that happening is, the same events are now labeled by different numbers.  The events stay the same, hence their probabilities stay the same. The only thing that changes is how we labeled them.<br />
+So, based on precalculus ideas, we have the following definition:</p>
+<div class="math notranslate nohighlight">
+\[E[f(X)]=\sum_{k}f(k)\cdot P(X=k)\]</div>
+<p>We call this the expected value of the function <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p>Hence using a geometric argument using the transformation of the horizontal axis, or using the algebraic definition of the expected value of a function, we can easily prove the following property:</p>
+<div class="math notranslate nohighlight">
+\[E[aX+bY]=aE[X]+bE[Y]\]</div>
+<p>However, expected values are not multiplicative, i.e. <span class="math notranslate nohighlight">\(E[XY]\neq E[X]E[Y]\)</span>, unless the random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent.</p>
+<p>Two (discrete) random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent if</p>
+<div class="math notranslate nohighlight">
+\[P(X=k,Y=l)=P(X=k)\cdot P(Y=l)\]</div>
+<p>for any <span class="math notranslate nohighlight">\(k,l\)</span>, where <span class="math notranslate nohighlight">\(P(X=k, Y=l)\)</span> denotes the intersection event of the events <span class="math notranslate nohighlight">\(X=k\)</span> and <span class="math notranslate nohighlight">\(Y=l\)</span>.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-remark to myself<div class="sd-summary-down docutils">
+Another baby example<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
-<p class="sd-card-text">draw the picture we had in class</p>
+<p class="sd-card-text">Toss a coin twice.</p>
+<ul class="simple">
+<li><p class="sd-card-text">Let <span class="math notranslate nohighlight">\(X:=\)</span> the number of heads (0, 1, or 2) in two tosses.<br />
+Let <span class="math notranslate nohighlight">\(Y=1\)</span> if the second toss is heads, and zero otherwise.<br />
+Then <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are dependent.</p></li>
+<li><p class="sd-card-text">Let <span class="math notranslate nohighlight">\(X:=\)</span> if the first toss is tails, and zero otherwise.<br />
+Let <span class="math notranslate nohighlight">\(Y=1\)</span> if the second toss is heads, and zero otherwise.<br />
+Then <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent.</p></li>
+</ul>
 </div>
-</details><p>So, based on precalculus ideas, we have the following definition:</p>
+</details><p>If two random variables are independent, then we have: <span class="math notranslate nohighlight">\(E[XY]=E[X]\cdot E[Y]\)</span></p>
+<p>The difference <span class="math notranslate nohighlight">\(E[XY]-E[X]E[Y]\)</span> is called covariance of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, and the covariance of two independent random variables is zero if the variables are independent:</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Proof<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
 <div class="math notranslate nohighlight">
-\[E[X]=\sum_{k}f(k)\cdot P(X=k)\]</div>
-<p>From this</p>
+\[\begin{split}
+    \begin{align*}
+        E[XY] &amp; =\sum_{k,l} k\cdot l\cdot P(XY=kl) \\
+              &amp; \stackrel{\textrm{always}}{=}\sum_{k}\sum_{l} k\cdot l \cdot P(X=k,Y=l) \\
+              &amp; \stackrel{\textrm{independence}}{=}\sum_{k}\sum_{l} k\cdot l\cdot P(X=k)P(Y=l) \\ 
+              &amp; = \sum_{k}k\left(\sum_{l} l\cdot P(Y=l)\right)P(X=k) \\
+              &amp; =\sum_{k}k\left(E[Y]\right)P(X=k) \\
+              &amp; =E[Y]\sum_{k}k\cdot P(X=k), \textrm{ as $E[Y]$ is just a constant, and doesn't depend on $k$,} \\
+              &amp; = E[Y]E[X]
+    \end{align*}
+\end{split}\]</div>
+</div>
+</details><p>However, the converse is not true:<br />
+If <span class="math notranslate nohighlight">\(Cov(X,Y)\stackrel{def}{=}E[XY]-E[X]E[Y]\)</span>, <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> be still dependent.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Counterexample<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Let <span class="math notranslate nohighlight">\(P(X=1)=P(X=-1)=0.3\)</span> and <span class="math notranslate nohighlight">\(P(X=2)=P(X=-2)=0.2\)</span>. Note the since the probability mass function of <span class="math notranslate nohighlight">\(X\)</span> is symmetric, <span class="math notranslate nohighlight">\(E[X]=0\)</span> (exc.: or compute by hand).<br />
+Let <span class="math notranslate nohighlight">\(Y=X^2\)</span>. Then <span class="math notranslate nohighlight">\(E[Y]=1\cdot 0.6 + 4\cdot 0.4=2.2 &gt;0\)</span>.<br />
+Note that <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are not independent random variables, as for example <span class="math notranslate nohighlight">\(P(X=1,Y=1)=0.3 \neq 0.3 \cdot 0.6 = P(X=1)\cdot P(Y=1)\)</span>, as <span class="math notranslate nohighlight">\(X=1\)</span> is a subset of <span class="math notranslate nohighlight">\(Y=1\)</span>.<br />
+However, <span class="math notranslate nohighlight">\(E[XY]=E[X^3]=0=0\cdot 2.2 = E[X]E[Y]\)</span>, since <span class="math notranslate nohighlight">\(X^3\)</span> is again a symmetric discrete random variable (exc.: or compute by hand).</p>
+</div>
+</details></section>
+<section id="conditional-expectance">
+<h3>Conditional expectance<a class="headerlink" href="#conditional-expectance" title="Permalink to this heading">#</a></h3>
+<p>A very useful idea is the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Law_of_total_expectation">law of total expectation</a></strong>:</p>
+<div class="math notranslate nohighlight">
+\[ E[X]=E[E[X|Y=l]] \]</div>
+<section id="example-law-of-total-expectation">
+<h4>Example (law of total expectation)<a class="headerlink" href="#example-law-of-total-expectation" title="Permalink to this heading">#</a></h4>
+<p>Assume we have three coins with probability of getting heads 0.2, 0.5 and 0.7, respectively.<br />
+The experiment consists of</p>
+<ul class="simple">
+<li><p>picking a coin with <span class="math notranslate nohighlight">\(P(Y=1)=0.3\)</span>, <span class="math notranslate nohighlight">\(P(Y=2)=0.5\)</span>, <span class="math notranslate nohighlight">\(P(Y=3)=0.2\)</span>, where <span class="math notranslate nohighlight">\(Y\)</span> denotes the coin number,</p></li>
+<li><p>and tossing the coin twice.</p></li>
+</ul>
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> is defined to be the number of heads observed.</p>
+<a class="reference internal image-reference" href="_images/law_of_total_E.png"><img alt="total_law" class="align-center" src="_images/law_of_total_E.png" style="width: 600px;" /></a>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{align*}
+    E[X] &amp; = E[E[X|Y=l]] \\
+         &amp; = E[2p_i] \\
+         &amp; = 0.3 \cdot (2\cdot 0.2) + 0.5 \cdot (2 \cdot 0.5) + 0.2\cdot (2\cdot 0.7) \\
+         &amp; = 0.9
+    \end{align*}
+\end{split}\]</div>
+</section>
 </section>
 </section>
 </section>
@@ -501,16 +679,16 @@ remark to myself<div class="sd-summary-down docutils">
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "r"
+            mode: "bayes"
         },
         kernelOptions: {
-            name: "ir",
+            name: "bayes",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'ir'</script>
+    <script>kernelName = 'bayes'</script>
 
                 </article>
               
@@ -555,6 +733,10 @@ remark to myself<div class="sd-summary-down docutils">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#popular-discrete-random-variables">(Popular) Discrete Random Variables</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expected-value-of-a-discrete-random-variable">Expected Value of a (Discrete) Random Variable</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Back to baby example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-expectance">Conditional expectance</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-law-of-total-expectation">Example (law of total expectation)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
