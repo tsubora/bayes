@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Hints for Homework 3 &#8212; Bayesian Statistics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'hw_3_hints';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Exam 1 - Review" href="exam_1_review.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt="Bayesian Statistics - Home"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="Bayesian Statistics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Stat319/Stat739: Introduction to Bayesian Inference
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bayesian_theorem.html">Bayesian Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="random_variables_discrete.html">Random Variables (Discrete)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_codes.html">Python Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exam_1_review.html">Exam 1 - Review</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Hints for Homework 3</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/hw_3_hints.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Hints for Homework 3</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1">Question 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2">Question 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#way-1-use-a-beta-distribution-calculator-you-find-online">Way 1: Use a Beta Distribution calculator you find online</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#way-3-run-a-numerical-simulation-using-python">Way 3: Run a Numerical Simulation using Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3">Question 3</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hints-for-homework-3">
+<h1>Hints for Homework 3<a class="headerlink" href="#hints-for-homework-3" title="Permalink to this heading">#</a></h1>
+<section id="question-1">
+<h2>Question 1<a class="headerlink" href="#question-1" title="Permalink to this heading">#</a></h2>
+<p><strong>Problem</strong>
+Suppose that our prior for <span class="math notranslate nohighlight">\(\mu\)</span> is <span class="math notranslate nohighlight">\(\frac{2}{3} : \frac{1}{3}\)</span> mixture of <span class="math notranslate nohighlight">\(N(0,1)\)</span> and <span class="math notranslate nohighlight">\(N(1,1)\)</span> and that a single observation is made <span class="math notranslate nohighlight">\(x\sim N(\mu,1)\)</span> and turns out to be equal to 2. What is the posterior probability that <span class="math notranslate nohighlight">\(\mu&gt;1\)</span>?</p>
+<p>One thing you need to remember is that when you have a mixture prior for a random variable, then its posterior is the mixture of the posteriors of the component densities.
+Namely, if<br />
+<span class="math notranslate nohighlight">\(f(\mu) = \alpha g(\mu) + \beta h(\mu)\)</span>,<br />
+then<br />
+<span class="math notranslate nohighlight">\(f(\mu | x) = \alpha(x) g(\mu |x) + \beta(x) h(\mu |x)\)</span>,<br />
+so this problem is about computing some pieces and putting them together.</p>
+<p>If the prior follows a normal distribution, and the likelihood function is normal, then the posterior is normal:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p></p></th>
+<th class="head text-left"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>prior</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle \mu \sim N(m_0,s_0^2)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>prior density function</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle f(\mu)=\frac{1}{\sqrt{2\pi}s_0}e^{-\frac{(\mu - m_0)^2}{2s^2_0}}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>likelihood</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle x|\mu \sim N(\mu,\sigma^2)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>likelihood density function</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle f(x|\mu)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x - \mu)^2}{2\sigma^2}}\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>posterior</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle \mu| x \sim N\left( \frac{m_0\cdot\sigma^2+x\cdot s^2_0}{\sigma^2 + s^2_0},\frac{\sigma^2 \cdot s^2_0}{\sigma^2+s^2_0}\right)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>posterior density function</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle f(\mu|x)= \frac{1}{\sqrt{2\pi}\left( \sqrt{\frac{\sigma^2 \cdot s^2_0}{\sigma^2+s^2_0}}\right)}\exp\left(-\frac{\left( \mu - \frac{m_0\cdot\sigma^2+x\cdot s^2_0}{\sigma^2 + s^2_0} \right)^2}{2 \cdot \frac{\sigma^2 \cdot s^2_0}{\sigma^2+s^2_0}}\right)\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple">
+<li><p>Find the posterior <span class="math notranslate nohighlight">\(g(\mu |x=2)\)</span> and <span class="math notranslate nohighlight">\(h(\mu |x=2)\)</span>. Since <span class="math notranslate nohighlight">\(x=2\)</span> is given, all you need is to find 4 numbers:</p></li>
+</ol>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p></p></th>
+<th class="head text-left"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>prior</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle \mu \sim N(0,1^2)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>likelihood</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle x|\mu \sim N(\mu,1^2)\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>posterior</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mu | x=2 \quad \sim \quad N(\boxed{?_1},\boxed{(?_2)^2})\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>posterior density function</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle g(\mu| x=2)=\frac{1}{\sqrt{2\pi}\boxed{?_2}}e^{-\frac{\left(\mu - \boxed{?_1}\right)^2}{2\cdot \boxed{(?_2)^2}}}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p></p></th>
+<th class="head text-left"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>prior</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle \mu \sim N(1,1^2)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>likelihood</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle x|\mu \sim N(\mu,1^2)\)</span></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>posterior</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\mu | x=2 \quad \sim \quad N(\boxed{?_3},\boxed{(?_4)^2})\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>posterior density function</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle h(\mu| x=2)=\frac{1}{\sqrt{2\pi}\boxed{?_4}}e^{-\frac{\left(\mu - \boxed{?_3}\right)^2}{2\cdot \boxed{(?_4)^2}}}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p>Once you find <span class="math notranslate nohighlight">\(g(\mu \|x=2)\)</span> and <span class="math notranslate nohighlight">\(h(\mu \|x=2)\)</span>, now you’ll need to find <span class="math notranslate nohighlight">\(\alpha(2)\)</span> and <span class="math notranslate nohighlight">\(\beta(2)\)</span>, as</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(f(\mu | x=2) = \alpha(2) N(\boxed{?_1},\boxed{(?_2)^2}) + \beta(2) N(\boxed{?_3},\boxed{(?_4)^2})\)</span></p>
+<p>While doing this part, you’ll need to use the following identities:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha(2) + \beta(2) =1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\displaystyle \frac{\alpha(2)}{\beta(2)} = \frac{\alpha \int f(x|\mu)g(\mu)d\mu}{\beta \int f(x|\mu)h(\mu)d\mu}\)</span>, where <span class="math notranslate nohighlight">\(\alpha = 2/3\)</span> and <span class="math notranslate nohighlight">\(\beta = 1/3\)</span> are given.</p></li>
+</ul>
+<p>My suggestion is to write <span class="math notranslate nohighlight">\(f(x|\mu)g(\mu)\)</span> (likelihood times prior <span class="math notranslate nohighlight">\(g\)</span>) and <span class="math notranslate nohighlight">\(f(x|\mu)h(\mu)\)</span> (likelihood times prior <span class="math notranslate nohighlight">\(h\)</span>) and compute their the integrals. The trick when computing the integrals you’ll most likely use is the following:</p>
+<p><span class="math notranslate nohighlight">\(\displaystyle \int \frac{1}{\sqrt{2\pi}{\blacksquare}}e^{-\frac{\left( \mu - \bigstar\right)^2}{2\blacksquare^2}} d \mu =1\)</span>, no matter what the values of <span class="math notranslate nohighlight">\(\blacksquare\)</span> and <span class="math notranslate nohighlight">\(\bigstar\)</span> are.</p>
+<p>So, when computing <span class="math notranslate nohighlight">\(f(x|\mu)g(\mu)\)</span> and <span class="math notranslate nohighlight">\(f(x|\mu)h(\mu)\)</span>, combine the exponents, complete the square in the exponent of the form <span class="math notranslate nohighlight">\((\mu - \bigstar)^2\)</span> and the rest will be an expression in terms of <span class="math notranslate nohighlight">\(x\)</span>, which you can take out of an integral that is computed with respect to <span class="math notranslate nohighlight">\(d\mu\)</span>.</p>
+</section>
+<section id="question-2">
+<h2>Question 2<a class="headerlink" href="#question-2" title="Permalink to this heading">#</a></h2>
+<p><strong>Problem</strong>
+Suppose that your prior beliefs about the probability <span class="math notranslate nohighlight">\(p\)</span> of success in Bernoulli trials have mean <span class="math notranslate nohighlight">\(\frac{1}{3}\)</span>
+and variance <span class="math notranslate nohighlight">\(\frac{1}{32}\)</span>. Give a <span class="math notranslate nohighlight">\(95\%\)</span> posterior HDR for <span class="math notranslate nohighlight">\(p\)</span> given that you have observed 8 successes in 20 trials.</p>
+<p>Remember that <span class="math notranslate nohighlight">\(\displaystyle E[Beta(\alpha,\beta)]=\frac{\alpha}{\alpha+\beta}\)</span> and <span class="math notranslate nohighlight">\(\displaystyle Var(Beta(\alpha,\beta))=\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}\)</span>.<br />
+So, you can figure out what <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are by solving the simpler equation <span class="math notranslate nohighlight">\(\displaystyle E[Beta(\alpha,\beta)]=\frac{\alpha}{\alpha+\beta}=\frac{1}{3}\)</span> first, writing  <span class="math notranslate nohighlight">\(\beta\)</span> in terms of <span class="math notranslate nohighlight">\(\alpha\)</span> and then use <span class="math notranslate nohighlight">\(\displaystyle Var(Beta(\alpha,\beta))=\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}=\frac{1}{32}\)</span>.<br />
+Once you have <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>, you know the prior <span class="math notranslate nohighlight">\(Beta(\alpha,\beta)\)</span>. We also know how to get the posterior using the binomial likelihood function: <span class="math notranslate nohighlight">\(Beta\left(\alpha+\textrm{\# successes},\beta +\textrm{\# failures}\right)\)</span>.</p>
+<p>To find the Highest Density Region (HDR), you can do the following (I’ll be using a random <span class="math notranslate nohighlight">\(\alpha=5\)</span> and <span class="math notranslate nohighlight">\(\beta=10\)</span> below).</p>
+<section id="way-1-use-a-beta-distribution-calculator-you-find-online">
+<h3>Way 1: Use a Beta Distribution calculator you find online<a class="headerlink" href="#way-1-use-a-beta-distribution-calculator-you-find-online" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Find a <a class="reference external" href="https://homepage.divms.uiowa.edu/~mbognar/applets/beta.html">Beta Distribution Calculator</a>.</p></li>
+<li><p>Find the <span class="math notranslate nohighlight">\(x\)</span> values by giving how much area you want to the left (or right) of a cut at <span class="math notranslate nohighlight">\(x\)</span> under the probability density function:</p></li>
+</ul>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<a class="reference internal image-reference" href="_images/beta_1.png"><img alt="beta_1" class="align-center" src="_images/beta_1.png" style="width: 800px;" /></a>
+</div>
+</div>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<a class="reference internal image-reference" href="_images/beta_2.png"><img alt="beta_2" class="align-center" src="_images/beta_2.png" style="width: 800px;" /></a>
+</div>
+</div>
+</div>
+</div>
+<p>That gives the HDR <span class="math notranslate nohighlight">\(=(0.13,0.58)\)</span>.</p>
+<p>This method works well for unimodel symmetric distributions. If the model is not symmetric (like the one we have here), it gives a rough estimation.</p>
+</section>
+<section id="way-3-run-a-numerical-simulation-using-python">
+<h3>Way 3: Run a Numerical Simulation using Python<a class="headerlink" href="#way-3-run-a-numerical-simulation-using-python" title="Permalink to this heading">#</a></h3>
+<p>An easy way to find a highest density region is to run the following Python code in Google Colab (a numerical simulation):</p>
+<ul class="simple">
+<li><p>Go to <a class="reference external" href="https://colab.google/">Google Colab</a>.</p></li>
+<li><p>Open a new notebook (you may need to log in using a gmail account).</p></li>
+<li><p>Paste the following code: Use the <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> you found earlier (I used a random <span class="math notranslate nohighlight">\(\alpha=5\)</span> and <span class="math notranslate nohighlight">\(\beta=10\)</span> in the example code).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymc</span> <span class="k">as</span> <span class="nn">pm</span>
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+
+<span class="c1"># beta distribution parameters</span>
+<span class="n">alpha_param</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">beta_param</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># generate samples for the simulation</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">alpha_param</span><span class="p">,</span> <span class="n">beta_param</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000000</span><span class="p">)</span>
+
+<span class="c1"># compute the HDI interval by counting samples</span>
+<span class="n">hdi_interval</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">hdi</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">hdi_prob</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;HDI Interval:&quot;</span><span class="p">,</span> <span class="n">hdi_interval</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HDI Interval: [0.1137228  0.56301105]
+</pre></div>
+</div>
+</div>
+</div>
+<p>And here’s how to visualize it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
+
+<span class="c1"># beta distribution parameters</span>
+<span class="n">alpha</span><span class="p">,</span> <span class="n">beta_param</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span>
+
+<span class="c1"># define the beta distribution</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta_param</span><span class="p">)</span>
+
+<span class="c1"># generate values from the beta distribution</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># HDR boundaries (previously computed)</span>
+<span class="n">hdr_lower</span><span class="p">,</span> <span class="n">hdr_upper</span> <span class="o">=</span> <span class="mf">0.12082921</span><span class="p">,</span> <span class="mf">0.55393566</span>
+
+<span class="c1"># plotting the probability density function</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Beta(5,10) pdf&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="c1"># color and label the HDR</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">hdr_lower</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">hdr_upper</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;95% HDR&#39;</span><span class="p">)</span>
+
+<span class="c1"># add ticks to denote the HDR interval endpoints on the horizontal axis</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="n">hdr_lower</span><span class="p">,</span> <span class="n">hdr_upper</span><span class="p">],</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hdr_lower</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">hdr_upper</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Highest Density Region of a Beta(5, 10) Distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ef306e7b47a9dd00277dbe8b44bcd531c0b7ccb44e0658ae79b16ce515186d7d.png" src="_images/ef306e7b47a9dd00277dbe8b44bcd531c0b7ccb44e0658ae79b16ce515186d7d.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="question-3">
+<h2>Question 3<a class="headerlink" href="#question-3" title="Permalink to this heading">#</a></h2>
+<p><strong>Problem</strong>
+Suppose that you have a prior distribution for the probability <span class="math notranslate nohighlight">\(p\)</span> of success in a certain kind of gambling game which has mean 0.4, and that you regard your prior information as equivalent to 12 trials. You then play the game 25 times and win 12 times. What is your posterior distribution for <span class="math notranslate nohighlight">\(p\)</span>?</p>
+<p>This question is very similar to question 2.
+Instead of using <span class="math notranslate nohighlight">\(\displaystyle E[Beta(\alpha,\beta)]=\frac{\alpha}{\alpha+\beta}\)</span> and <span class="math notranslate nohighlight">\(\displaystyle Var(Beta(\alpha,\beta))=\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}\)</span>, you will be using <span class="math notranslate nohighlight">\(\displaystyle \alpha+ \beta = 12\)</span> to find <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> of the prior. Then you update the distribution using the binomial likelihood where <span class="math notranslate nohighlight">\(\# \textrm{successes} = 12\)</span>, <span class="math notranslate nohighlight">\(\# \textrm{failures} = 13\)</span> (<span class="math notranslate nohighlight">\(\textrm{total games} = 25\)</span>).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "bayes"
+        },
+        kernelOptions: {
+            name: "bayes",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'bayes'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="exam_1_review.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exam 1 - Review</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-1">Question 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-2">Question 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#way-1-use-a-beta-distribution-calculator-you-find-online">Way 1: Use a Beta Distribution calculator you find online</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#way-3-run-a-numerical-simulation-using-python">Way 3: Run a Numerical Simulation using Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-3">Question 3</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Bora Ferlengez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

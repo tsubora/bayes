@@ -1,0 +1,71 @@
+Traceback (most recent call last):
+  File "/Users/boraferlengez/anaconda3/envs/bayes/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/boraferlengez/anaconda3/envs/bayes/lib/python3.11/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/boraferlengez/anaconda3/envs/bayes/lib/python3.11/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/boraferlengez/anaconda3/envs/bayes/lib/python3.11/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/boraferlengez/anaconda3/envs/bayes/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/boraferlengez/anaconda3/envs/bayes/lib/python3.11/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Users/boraferlengez/anaconda3/envs/bayes/lib/python3.11/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/boraferlengez/anaconda3/envs/bayes/lib/python3.11/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+import matplotlib.pyplot as plt
+import ipywidgets as widgets
+from IPython.display import display
+
+def probability(k, lambda_, n):
+    """
+    Compute the probability P(X=k/n) for given k, lambda, and n.
+    """
+    numerator = 1 - np.exp(-lambda_/n)
+    denominator = np.exp(k*lambda_/n)
+    return numerator / denominator
+
+def plot_distribution(lambda_=2, n=10):
+    k_values = np.arange(0, 5*n)  
+
+    # Compute probabilities for each k
+    probabilities = [probability(k, lambda_, n) for k in k_values]
+
+    # Plot
+    plt.figure(figsize=(10,6))
+    plt.bar(k_values/n, probabilities, width=0.05)
+    plt.xlabel('X = k/n')
+    plt.ylabel('Probability')
+    plt.title(f'Probability Distribution for λ = {lambda_} and n = {n}')
+    plt.ylim(0, max(probabilities) + 0.05)  # Adjust y-axis limit for better visualization
+    plt.show()
+
+# Create interactive sliders
+lambda_slider = widgets.FloatSlider(value=2, min=0.1, max=10, step=0.1, description='λ:')
+n_slider = widgets.IntSlider(value=10, min=1, max=100, step=1, description='n:')
+
+widgets.interactive(plot_distribution, lambda_=lambda_slider, n=n_slider)
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[6], line 3[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[0;32m----> 3[0m [38;5;28;01mimport[39;00m [38;5;21;01mipywidgets[39;00m [38;5;28;01mas[39;00m [38;5;21;01mwidgets[39;00m
+[1;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mIPython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdisplay[39;00m [38;5;28;01mimport[39;00m display
+[1;32m      6[0m [38;5;28;01mdef[39;00m [38;5;21mprobability[39m(k, lambda_, n):
+
+[0;31mModuleNotFoundError[0m: No module named 'ipywidgets'
+ModuleNotFoundError: No module named 'ipywidgets'
+
